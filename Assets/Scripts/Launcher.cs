@@ -16,6 +16,12 @@ namespace Com.VGE.Collaboration
         /// </summary>   
         [Tooltip("The maximum number of players per room. When a room is full, it can't be joined by new players, and so new room will be created")]
         public byte MaxPlayersPerRoom = 4;
+
+        [Tooltip("The Ui Panel to let the user enter name, connect and play")]
+        public GameObject controlPanel;
+        [Tooltip("The UI Label to inform the user that the connection is in progress")]
+        public GameObject progressLabel;
+
         #endregion
 
 
@@ -62,7 +68,9 @@ namespace Com.VGE.Collaboration
         /// </summary>
         void Start()
         {
-            Connect();
+            //Connect();
+            progressLabel.SetActive(false);
+            controlPanel.SetActive(true);
         }
 
 
@@ -80,7 +88,8 @@ namespace Com.VGE.Collaboration
         public void Connect()
         {
 
-
+            progressLabel.SetActive(true);
+            controlPanel.SetActive(false);
             // we check if we are connected or not, we join if we are , else we initiate the connection to the server.
             if (PhotonNetwork.connected)
             {
@@ -108,6 +117,8 @@ namespace Com.VGE.Collaboration
 
         public override void OnDisconnectedFromPhoton()
         {
+            progressLabel.SetActive(false);
+            controlPanel.SetActive(true);
             Debug.LogWarning("DemoAnimator/Launcher: OnDisconnectedFromPhoton() was called by PUN");
         }
 
