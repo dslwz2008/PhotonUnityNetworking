@@ -7,6 +7,12 @@ namespace Com.MyCompany.MyGame
 {
     public class GameManager : Photon.PunBehaviour
     {
+        static public GameManager Instance;
+        void Start()
+        {
+            Instance = this;
+        }
+
         #region Photon Messages
         /// <summary>
         /// Called when the local player left the room. We need to load the launcher scene.

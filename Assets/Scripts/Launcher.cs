@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Com.VGE.Collaboration
+namespace Com.MyCompany.MyGame
 {
     public class Launcher : Photon.PunBehaviour
     {
