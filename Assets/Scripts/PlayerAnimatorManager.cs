@@ -3,7 +3,7 @@ using System.Collections;
 
 namespace Com.MyCompany.MyGame
 {
-    public class PlayerAnimatorManager : MonoBehaviour
+    public class PlayerAnimatorManager : Photon.PunBehaviour
     {   
         #region PUBLIC PROPERTIES
         public float DirectionDampTime = .25f;
@@ -24,6 +24,11 @@ namespace Com.MyCompany.MyGame
         // Update is called once per frame
         void Update()
         {
+            if (photonView.isMine == false && PhotonNetwork.connected == true)
+            {
+                return;
+            }
+
             if (!animator)
             {
                 return;
